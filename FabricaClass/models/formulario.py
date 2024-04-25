@@ -11,4 +11,7 @@ class Formulario(models.Model):
     usuario = models.ForeignKey('usuario.Usuario', on_delete=models.CASCADE)
     pergunta = models.ForeignKey(Pergunta, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.titulo
+
 

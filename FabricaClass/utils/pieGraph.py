@@ -2,11 +2,10 @@ import asyncio
 import matplotlib.pyplot as plt
 import numpy as np
 import tempfile
+import smtplib
 from rest_framework.views import APIView
 from rest_framework import status
 from django.http import HttpResponse
-import smtplib
-
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage

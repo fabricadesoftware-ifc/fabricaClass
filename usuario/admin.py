@@ -26,6 +26,7 @@ class CustomUserAdmin(UserAdmin):
                 "fields": (
                     "first_name",
                     "last_name",
+                    "tipo_usuario",
                 )
             },
         ),

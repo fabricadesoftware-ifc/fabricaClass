@@ -10,7 +10,6 @@ class Usuario(AbstractUser):
         ALUNO = (2, 'Aluno',)
     email = models.EmailField(_("e-mail address"), unique=True)
     username = models.CharField(_("Nome"), max_length=255, blank=True, null=True)
-    telefone = models.CharField(_("Phone"), max_length=11, blank=True, null=True)
     matricula = models.CharField(_("Matricula/SIAPE"), max_length=11, blank=True, null=True)
     tipo_usuario = models.IntegerField(choices=TipoUsuario.choices,  default=TipoUsuario.ALUNO)
     turma = models.ForeignKey(Turma, on_delete=models.PROTECT, related_name='turma', blank=True, null=True)

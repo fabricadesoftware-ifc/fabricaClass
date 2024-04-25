@@ -44,5 +44,5 @@ urlpatterns = [
     path('api/cadastro/', cadastro.create_user, name='create_user'),
     path('api/login/', login.get_user, name='get_user'),
     path('api/new-password/', newPassword.forget_password, name='forget_password'),
-    path('api/email/', EmailAPIView.as_view(), name='enviar_email')
+    path('api/email/', EmailAPIView.as_view(), name='enviar_email'),
 ]
