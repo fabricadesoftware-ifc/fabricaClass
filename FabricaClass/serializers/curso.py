@@ -4,4 +4,9 @@ from FabricaClass.models import Curso
 class CursoSerializer(ModelSerializer):
     class Meta:
         model = Curso
-        fields = "__all__"
+        fields: list[str] = [
+            'id'
+            'TipoCurso',
+            'NomeCurso',
+            'TurnoCurso',
+        ]

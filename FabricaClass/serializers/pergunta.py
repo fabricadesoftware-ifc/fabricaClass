@@ -4,4 +4,8 @@ from FabricaClass.models import Pergunta
 class PerguntaSerializer(ModelSerializer):
     class Meta:
         model = Pergunta
-        fields = "__all__"
+        fields: list[str] = [
+            'id',
+            'descricao',
+            'criterio'
+        ]

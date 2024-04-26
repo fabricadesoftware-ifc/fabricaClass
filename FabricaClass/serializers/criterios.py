@@ -4,4 +4,9 @@ from FabricaClass.models import Criterios
 class CriteriosSerializer(ModelSerializer):
     class Meta:
         model = Criterios
-        fields = "__all__"
+        fields: list[str] = [
+            'id',
+            'descricao',
+            'valor_maximo',
+            'valor_minimo'
+        ]

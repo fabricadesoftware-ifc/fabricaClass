@@ -4,4 +4,10 @@ from FabricaClass.models import Respostas
 class RespostasSerializer(ModelSerializer):
     class Meta:
         model = Respostas
-        fields = "__all__"
+        fields: list[str] = [
+            'id',
+            'data_hora',
+            'resposta',
+            'formulario',
+            'usuario'
+        ]

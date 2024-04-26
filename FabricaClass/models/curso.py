@@ -1,7 +1,6 @@
 from django.db import models
 
 class Curso(models.Model):
-
     class TipoCurso(models.IntegerChoices):
         Graduacao = (1, "Graduação",)
         Tecnico = (2, "Técnico",)
