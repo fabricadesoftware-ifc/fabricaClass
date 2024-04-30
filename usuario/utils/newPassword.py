@@ -8,6 +8,8 @@ from django.core.mail import BadHeaderError, send_mail
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from usuario.models import Usuario
+from drf_spectacular.utils import extend_schema
+
 
 def send_email(email, message, subject):
         recipient_list = [email]
@@ -30,6 +32,7 @@ def send_email(email, message, subject):
             {"message": "Email enviado com sucesso"}, status=status.HTTP_200_OK
         )
 
+@extend_schema(tags=['Usuario'])
 @api_view(["POST"])
 @authentication_classes([])
 @permission_classes([])

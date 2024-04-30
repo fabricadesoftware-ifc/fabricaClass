@@ -6,9 +6,10 @@ from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 from django.contrib.auth import authenticate, get_user_model
 import json
+from drf_spectacular.utils import extend_schema
 User = get_user_model()
 
-
+@extend_schema(tags=['Usuario'])
 @api_view(['POST'])
 @authentication_classes([])
 @permission_classes([AllowAny]) 

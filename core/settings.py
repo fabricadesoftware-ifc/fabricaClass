@@ -1,23 +1,20 @@
 from pathlib import Path
+from dotenv import load_dotenv #Adicionado
+import os #Adicionado
+
+load_dotenv() # Carregando variáveis de ambiente
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SECRET_KEY = os.getenv("SECRET_KEY") #Vindo do arquivo .env
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-9xspk4dl#^e8u-&g2^$2#l3)oe6jg5sn#d2gjd_d#6%qk=#%$0"
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -96,10 +93,15 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination", #Adicionando Paginação
+    "PAGE_SIZE": 50, #Adicionando Limite de Paginação
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema", #Adicionando Spectacular
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",  #Adicionando JWT  
     ),
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissions", #Adicionando permissões
+    ],
 }
 
 SPECTACULAR_SETTINGS = {
@@ -139,9 +141,15 @@ CORS_ALLOW_ALL_ORIGINS = True # Adicionando Cors
 AUTH_USER_MODEL = "usuario.Usuario" # Trocando o modelo de usuário padrão do Django
 
 #Adicionando o envio de e-mail
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "suporte.fabricaclass@gmail.com"
-EMAIL_HOST_PASSWORD = "hvnz resu zood wosz"
+EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+
+#Adicionando configurações de paginação
+DEFAULT_LIMIT: int = None
+LIMIT_QUERY_PARAM: str = "l"
+OFFSET_QUERY_PARAM: str = "o"
+MAX_LIMIT: int = 100

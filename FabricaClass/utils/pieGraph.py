@@ -9,7 +9,9 @@ from django.http import HttpResponse
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
+from drf_spectacular.utils import extend_schema
 
+@extend_schema(tags=['Email'])
 async def save_pie_graph(subject, message, recipient_list):
     try:
         fig, ax = plt.subplots(figsize=(6, 3), subplot_kw=dict(aspect="equal"))

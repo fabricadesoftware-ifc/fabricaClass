@@ -17,6 +17,8 @@ dependencies = [
     "django-cors-headers>=4.3.1",
     "django-extensions>=3.2.3",
     "pygraphviz>=1.12",
+    "dotenv>=0.0.5",
+    "python-dotenv>=1.0.1",
 ]
 requires-python = ">=3.10"
 license = {text = "MIT"}
