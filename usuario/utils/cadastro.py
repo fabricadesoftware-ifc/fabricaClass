@@ -15,7 +15,6 @@ from drf_spectacular.utils import extend_schema
 def create_user(request):
     email = request.data.get("email")
     password = request.data.get("password")
-    username = request.data.get("username")
     tipo_usuario = request.data.get("tipo_usuario")
     matricula = request.data.get("matricula")
 
@@ -24,7 +23,6 @@ def create_user(request):
     if email and password:
         user = Usuario.objects.create(
             email=email,
-            username=username,
             tipo_usuario=tipo_usuario,
             matricula=matricula
         )

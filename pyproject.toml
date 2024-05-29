@@ -19,6 +19,7 @@ dependencies = [
     "pygraphviz>=1.12",
     "dotenv>=0.0.5",
     "python-dotenv>=1.0.1",
+    "pandas>=2.2.2",
 ]
 requires-python = ">=3.10"
 license = {text = "MIT"}

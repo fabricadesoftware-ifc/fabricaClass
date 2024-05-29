@@ -4,3 +4,4 @@ from .formulario import FormularioViewSet
 from .respostas import RespostasViewSet
 from .criterios import CriteriosViewSet
 from .pergunta import PerguntaViewSet
+from .email import EmailAPIView
