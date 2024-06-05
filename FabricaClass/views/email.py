@@ -17,7 +17,7 @@ class EmailAPIView(APIView):
     def post(self, request, *args, **kwargs):
         subject = request.POST.get("subject", "Nome do email")
         message = request.POST.get("message", "Conteúdo do email")
-        recipient_list = ["lucasantonete@hotmail.com"]
+        recipient_list = [Usuario.objects.first().email]
 
 
         usuarios = Usuario.objects.all()
