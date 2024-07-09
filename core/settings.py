@@ -27,8 +27,9 @@ INSTALLED_APPS = [
     "rest_framework", #Adicionando Rest Framework
     "rest_framework_simplejwt", #Adicionando JWT
     "drf_spectacular", #Adicionando Spectacular
-    "usuario", #Adicionando App Usuario
-    "FabricaClass", #Adicionando App FabricaClass
+    "apps.usuario", #Adicionando App Usuario
+    "apps.fabrica_class", #Adicionando App FabricaClass
+    "apps.uploader", #Adicionando App Uploader
 ]
 
 MIDDLEWARE = [
@@ -63,26 +64,23 @@ TEMPLATES = [
 WSGI_APPLICATION = "core.wsgi.application"
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-#DATABASES = {
- #   "default": {
-  #      "ENGINE": "django.db.backends.sqlite3",
-   #     "NAME": BASE_DIR / "db.sqlite3",
-   # }
-#}
-
 DATABASES = {
-    'default': {
-        'ENGINE': "django.db.backends.postgresql",
-        'NAME': os.getenv("POSTGRES_NAME"),
-        'USER': os.getenv("POSTGRES_USER"),
-        'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
-        'HOST': os.getenv("POSTGRES_HOST"), 
-        'PORT': os.getenv("POSTGRES_PORT"),       
-    }
+   "default": {
+       "ENGINE": "django.db.backends.sqlite3",
+       "NAME": BASE_DIR / "db.sqlite3",
+   }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': "django.db.backends.postgresql",
+#         'NAME': os.getenv("POSTGRES_NAME"),
+#         'USER': os.getenv("POSTGRES_USER"),
+#         'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+#         'HOST': os.getenv("POSTGRES_HOST"), 
+#         'PORT': os.getenv("POSTGRES_PORT"),       
+#     }
+# }
 
 
 # Password validation
@@ -164,3 +162,9 @@ DEFAULT_LIMIT: int = None
 LIMIT_QUERY_PARAM: str = "l"
 OFFSET_QUERY_PARAM: str = "o"
 MAX_LIMIT: int = 100
+
+# App Uploader settings
+MEDIA_URL = "http://localhost:8000/media/"
+MEDIA_ENDPOINT = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+FILE_UPLOAD_PERMISSIONS = 0o640

@@ -1,0 +1,1 @@
+from apps.fabrica_class.paginations.pagination import FormularioPagination

@@ -1,20 +1,23 @@
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+from rest_framework.routers import DefaultRouter
 from django.contrib import admin
 from django.urls import include, path
-from rest_framework.routers import DefaultRouter
-from FabricaClass.views import TurmaViewSet, CursoViewSet, FormularioViewSet, RespostasViewSet, CriteriosViewSet, PerguntaViewSet, EmailAPIView
-# from FabricaClass.utils.pieGraph import EmailAPIView
-from usuario.router import router as usuario_router
-from usuario.utils import newPassword
+from django.conf import settings
+from django.conf.urls.static import static
 from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularRedocView,
     SpectacularSwaggerView,
 )
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
-from usuario.utils import cadastro, login, newPassword
+from apps.fabrica_class.views import TurmaViewSet, CursoViewSet, FormularioViewSet, RespostasViewSet, CriteriosViewSet, PerguntaViewSet, EmailAPIView
+from apps.usuario.router import router as usuario_router
+from apps.usuario.utils import newPassword
+from apps.usuario.utils import cadastro, login, newPassword
+from apps.uploader.router import router as uploader_router
+# from FabricaClass.utils.pieGraph import EmailAPIView
 # from FabricaClass.utils.managerDataFrame import ManagerDataFrame
 
 router = DefaultRouter()
@@ -47,5 +50,8 @@ urlpatterns = [
     path('api/login/', login.get_user, name='get_user'),
     path('api/new-password/', newPassword.forget_password, name='forget_password'),
     path('api/email/', EmailAPIView.as_view(), name='enviar_email'),
+    path("api/media/", include(uploader_router.urls)),
     # path('api/dataframe/', ManagerDataFrame.as_view(), name='dataframe'),
 ]
+
+urlpatterns += static(settings.MEDIA_ENDPOINT, document_root=settings.MEDIA_ROOT)
